@@ -7,9 +7,11 @@
 </script>
 
 <div class="{title}">
-  <button>
-    <img src={translateImage(title)} alt="{title}">
-  </button>
+  {#if title}
+    <button on:click>
+      <img src={translateImage(title)} alt="{title}">
+    </button>
+  {/if}
 </div>
 
 <style lang="scss">
@@ -20,11 +22,20 @@
     justify-content: center;
     align-items: center;
     border-radius: 100%;
-    box-shadow: inset 0px -8px 1px hsla(0,0%,0%,25%);
+    background:hsla(237, 49%, 15%, 30%);
     
-    &.paper{ background-image: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%)); }
-    &.scissors{ background-image: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%)); }
-    &.rock{ background-image: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%)); }
+    &.paper{ 
+      background-image: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+      box-shadow: inset 0px -8px 1px hsla(0,0%,0%,25%);
+    }
+    &.scissors{ 
+      box-shadow: inset 0px -8px 1px hsla(0,0%,0%,25%);
+      background-image: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+    }
+    &.rock{ 
+      box-shadow: inset 0px -8px 1px hsla(0,0%,0%,25%);
+      background-image: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+    }
 
     button {
       height: 130px;
