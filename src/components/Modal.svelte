@@ -35,7 +35,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    z-index: 999;
     /* allow click-through to backdrop */
     pointer-events: none;
   }
@@ -57,9 +57,9 @@
     color: hsl(229, 25%, 31%);
   }
 
-  p {
-    text-align: center;
-    margin-top: 16px;
+  img {
+    width: 75%;
+    margin: auto;
   }
 
   button {
@@ -67,6 +67,7 @@
     background: transparent;
     border: none;
     height: 30px;
+    cursor: pointer;
 
     &:after,
     &:before {
