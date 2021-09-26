@@ -31,8 +31,8 @@
       &::before{
         position: absolute;
         content: '';
-        width: 180px;
-        height: 180px;
+        width: 120px;
+        height: 120px;
         border-radius: 100%;
         z-index: 0;
         box-shadow: 0px 0px 160px white;
