@@ -11,6 +11,8 @@
   let playerChoice = ''
   let houseChoice = ''
   let gameResult = ''
+  let gameResultInvert = ''
+  let humanizeGameResult = ''
   
   let score = 0
 
@@ -22,6 +24,7 @@
       houseChoice = choices[Math.floor(Math.random() * 2)];
 
       gameResult = normalGame(playerChoice, houseChoice)
+      gameResultInvert = invertResult(gameResult)
     }, 1000);
   }
 
@@ -31,34 +34,40 @@
     if (playerChoice === 'rock') {
       if (houseChoice === 'scissors') { 
         score++ 
-        return 'you win'
+        return 'win'
       }
       if (houseChoice === 'paper') {
         score--
-        return 'you lose'
+        return 'lose'
       }
     }
 
     if (playerChoice === 'scissors') {
       if (houseChoice === 'paper') {
         score++ 
-        return 'you win'
+        return 'win'
       }
       if (houseChoice === 'rock') {
         score--
-        return 'you lose'
+        return 'lose'
       }
     }
 
     if (playerChoice === 'paper') {
       if (houseChoice === 'rock') { 
         score++ 
-        return 'you win'
+        return 'win'
       }
       if (houseChoice === 'scissors') { 
         score--
-        return 'you lose'
+        return 'lose'
       }
+    }
+  }
+
+  function invertResult (gameResult){
+    if(gameResult !== '' && gameResult !== 'draw') {
+      return gameResult === 'win' ? 'lose' : 'win'
     }
   }
 
@@ -77,43 +86,45 @@
 <Start/>
 
 <div class="game">
-  <Intro {score}/>
-  {#if playerChoice === ''}
-    <div class="player-select">
-      <Icon title="paper" on:click={() => handlePlayerSelect('paper')}/>
-      <span/>
-      <Icon title="scissors" on:click={() => handlePlayerSelect('scissors')}/>
-      <span/>
-      <span/>
-      <span/>
-      <span/>
-      <Icon title="rock" on:click={() => handlePlayerSelect('rock')}/>
-      <span/>
+  <div class="container">
+    <div class="grid">
+      <Intro {score}/>
+      {#if playerChoice === ''}
+        <div class="player-select">
+          <div class="w-1-2">
+            <Icon title="paper" on:click={() => handlePlayerSelect('paper')}/>
+          </div>
+          <div class="w-1-2">
+            <Icon title="scissors" on:click={() => handlePlayerSelect('scissors')}/>
+          </div>
+          <div class="w-1-1">
+            <Icon title="rock" on:click={() => handlePlayerSelect('rock')}/>
+          </div>
+        </div>
+      {:else}
+        <div class="result">
+          <div>
+            <span>You picked</span>
+            <Icon big title={playerChoice} {gameResult} />
+          </div>
+          <div class="">
+            {#if houseChoice !== ''}
+              <span class="game-result">{gameResult.toUpperCase()}</span>
+              <Button big dense label="play again" on:click={resetGame}/>
+            {/if}
+          </div>
+          <div>
+            <span>The house picked</span>
+            <Icon big title={houseChoice} gameResult={gameResultInvert}/>
+          </div>
+        </div>
+      {/if}
+    
+      <footer>
+        <Button label="rules" on:click={handleClick}/>
+      </footer>
     </div>
-  {:else}
-    <div class="result">
-      <div>
-        <span>You picked</span>
-        <Icon title={playerChoice}/>
-      </div>
-      <div class="">
-        {#if houseChoice !== ''}
-          <span class="game-result">{gameResult.toUpperCase()}</span>
-          <Button big dense label="play again" on:click={resetGame}/>
-        {/if}
-      </div>
-      <div>
-        <span>The house picked</span>
-        <Icon title={houseChoice}/>
-      </div>
-    </div>
-  {/if}
-
-  <footer>
-    <Button label="rules" on:click={handleClick}/>
-  </footer>
-
-  
+  </div>
 </div>
 
 <Modals>
@@ -139,36 +150,36 @@
     width: 100%;
     height: 100vh;
     margin: 0;
-    padding: 0;
     background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
-    padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
   }
 
   .player-select {
     position: relative;
-    padding: 50px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows:repeat(3, 1fr);
-    justify-items: center;
-    justify-content: center;
+    padding: 20px 0px 0px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    
+    @media (min-width: 640px) {
+      padding: 80px 70px 40px;
+    }
 
-    &:after{
-      content: '';
-      background: url('bg-triangle.svg');
-      background-color: red;
-      width: 100%;
-      height: 100%;
+    .w-1-1,
+    .w-1-2 {
+      padding-bottom:30px;
+      display: flex;
+      justify-content: center;
     }
   }
 
   .result {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
 
     & > div {
       display: flex;

@@ -1,12 +1,14 @@
 <script>
   export let title
+  export let gameResult
+  export let big = false
 
   function translateImage (title) {
     return `./icon-${title}.svg`
   }
 </script>
 
-<div class="{title}">
+<div class={`${title} ${gameResult}`} class:big>
   {#if title}
     <button on:click>
       <img src={translateImage(title)} alt="{title}">
@@ -16,14 +18,27 @@
 
 <style lang="scss">
   div {
-    height: 180px;
-    width: 180px;
+    height: 120px;
+    width: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
     background:hsla(237, 49%, 15%, 30%);
-    
+    position: relative;
+
+    &.win {
+      &::before{
+        position: absolute;
+        content: '';
+        width: 180px;
+        height: 180px;
+        border-radius: 100%;
+        z-index: 0;
+        box-shadow: 0px 0px 160px white;
+      }
+    }
+
     &.paper{ 
       background-image: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
       box-shadow: inset 0px -8px 1px hsla(0,0%,0%,25%);
@@ -38,12 +53,34 @@
     }
 
     button {
-      height: 130px;
-      width: 130px;
+      height: 90px;
+      width: 90px;
       border-radius: 100%;
       border: none;
       box-shadow: inset 0px 6px 1px #ccc;
       cursor: pointer;
+      z-index: 1;
+    }
+
+    @media (min-width: 640px) {
+      height: 180px;
+      width: 180px;
+      button {
+        height: 130px;
+        width: 130px;
+      }
+      &.big {
+        height: 240px;
+        width: 240px;
+        button {
+          height: 170px;
+          width: 170px;
+        }
+        &::before{
+          height: 240px;
+          width: 240px;
+        }
+      }
     }
   }
 </style>

@@ -22,6 +22,11 @@
     padding: 1em 0.7em;
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    height: 160px;
+    align-items: center;
   }
 
   h1 {
@@ -35,10 +40,12 @@
     background: white;
     border-radius: 6px;
     width: 120px;
+    height: 130px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+   
     span {
       color: hsl(229, 64%, 46%);
       letter-spacing: 3px;
