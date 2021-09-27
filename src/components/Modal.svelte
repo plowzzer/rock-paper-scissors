@@ -15,10 +15,11 @@
     <div class="contents">
       <h2>{title.toUpperCase()}</h2>
       {#if rules === 'normal'}
-        <img src={normal} alt="Normal rules">
+        <img src={normal} alt="Rock Paper Scrissors rules">
       {/if}
       {#if rules === 'spock-lizard'}
-        <img src={bonus} alt="Bonus rules">
+        <img src={bonus} alt="Rock Paper Scrissors Lizard Spock rules">
+        <a href="https://youtu.be/iSHPVCBsnLw?t=27" target="_blank">How to play with The Big Bang Theory</a>
       {/if}
       <button on:click={closeModal} />
     </div>
@@ -48,6 +49,7 @@
     flex-direction: column;
     justify-content: space-between;
     pointer-events: auto;
+    text-align: center;
   }
 
   h2 {
@@ -58,7 +60,13 @@
 
   img {
     width: 75%;
+    max-width: 600px;
     margin: auto;
+  }
+  
+  a{
+    color: hsl(229, 25%, 31%);
+    margin-bottom: 60px;
   }
 
   button {

@@ -47,6 +47,7 @@
     playerChoice = ''
     houseChoice = ''
     gameResult = ''
+    gameResultInvert = ''
     humanizeResult = ''
   }
 
