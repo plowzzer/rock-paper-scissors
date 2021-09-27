@@ -1,13 +1,14 @@
 <script>
   export let score
+  export let gameType
 </script>
 
 <header>
-  <h1 class="title">
+  <a class="title" href="{gameType === 'normal' ? '/lizard-spock' : '/'}">
     <span>Rock</span>
     <span>Paper</span>
     <span>Scissors</span>
-  </h1>
+  </a>
 
   <div class="score">
     <span>score</span>
@@ -29,11 +30,13 @@
     align-items: center;
   }
 
-  h1 {
+  a {
     text-transform: uppercase;
     color:white;
     display: flex;
     flex-direction: column;
+    font-size: 2em;
+    text-decoration: none;
   }
 
   .score{

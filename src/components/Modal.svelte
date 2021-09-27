@@ -1,5 +1,5 @@
 <script>
-  import { closeModal, modals } from 'svelte-modals'
+  import { closeModal } from 'svelte-modals'
 	import { fly } from 'svelte/transition'
 	
   export let isOpen
@@ -17,7 +17,7 @@
       {#if rules === 'normal'}
         <img src={normal} alt="Normal rules">
       {/if}
-      {#if rules === 'bonus'}
+      {#if rules === 'spock-lizard'}
         <img src={bonus} alt="Bonus rules">
       {/if}
       <button on:click={closeModal} />
@@ -36,7 +36,6 @@
     justify-content: center;
     align-items: center;
     z-index: 999;
-    /* allow click-through to backdrop */
     pointer-events: none;
   }
 

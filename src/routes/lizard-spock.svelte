@@ -3,7 +3,7 @@
   import { fade } from 'svelte/transition'
 
   import Base from '../components/_Base.svelte'
-  import { normalGame } from '../helpers/gameEngine.svelte';
+  import { lizardSpockGame } from '../helpers/gameEngine.svelte';
   import Icon from '../components/Icon.svelte'
   import Intro from '../components/Intro.svelte'
   import Button from '../components/Button.svelte'
@@ -18,12 +18,12 @@
   let score = 0
 
   function handlePlayerSelect (choice) {
-    const choices = ['paper', 'scissors', 'rock']
+    const choices = ['paper', 'scissors', 'rock', 'lizard', 'spock']
     playerChoice = choice  
 
     setTimeout(() => {
-      houseChoice = choices[Math.floor(Math.random() * 2)];
-      gameResult = normalGame(playerChoice, houseChoice)
+      houseChoice = choices[Math.floor(Math.random() * 4)];
+      gameResult = lizardSpockGame(playerChoice, houseChoice)
       if(gameResult === 'win') score++
       if(gameResult === 'lose') score--
       gameResultInvert = invertResult(gameResult)
@@ -40,6 +40,7 @@
   function getHumanizeResult (gameResult)  {
     if (gameResult === 'win') return 'YOU WIN'
     if (gameResult === 'lose') return 'YOU LOSE'
+    return 'DRAW'
   }
 
   function resetGame() {
@@ -50,13 +51,13 @@
   }
 
   function handleClick() {
-    openModal(Modal, { title: "Rules", rules: "normal" })
+    openModal(Modal, { title: "Rules", rules: "spock-lizard" })
   }
 
 </script>
 
 <svelte:head>
-	<title>Rock Paper Scissors</title>
+	<title>Rock Paper Scissors Lizard Spock</title>
 </svelte:head>
 
 <Base/>
@@ -64,16 +65,23 @@
 <div class="game">
   <div class="container">
     <div class="grid">
-      <Intro {score} gameType='normal'/>
+      <Intro {score}/>
       {#if playerChoice === ''}
         <div class="player-select">
-          <div class="w-1-2">
+          <div class="w-1-1">
+            <Icon title="scissors" on:click={() => handlePlayerSelect('scissors')}/>  
+          </div>
+          <div class="w-1-3">
+            <Icon title="spock" on:click={() => handlePlayerSelect('spock')}/>
+            </div>
+            <div class="w-1-3"></div>
+            <div class="w-1-3">
             <Icon title="paper" on:click={() => handlePlayerSelect('paper')}/>
           </div>
           <div class="w-1-2">
-            <Icon title="scissors" on:click={() => handlePlayerSelect('scissors')}/>
-          </div>
-          <div class="w-1-1">
+            <Icon title="lizard" on:click={() => handlePlayerSelect('lizard')}/>
+            </div>
+            <div class="w-1-2">
             <Icon title="rock" on:click={() => handlePlayerSelect('rock')}/>
           </div>
         </div>
@@ -140,11 +148,12 @@
     text-align: center;
     
     @media (min-width: 640px) {
-      padding: 80px 70px 40px;
+      padding: 20px 30px 20px;
     }
 
     .w-1-1,
-    .w-1-2 {
+    .w-1-2,
+    .w-1-3 {
       padding-bottom:30px;
       display: flex;
       justify-content: center;

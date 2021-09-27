@@ -45,4 +45,8 @@
 :global(.w-1-2) {
   width: 50%;
 }
+
+:global(.w-1-3) {
+  width: 33.333%;
+}
 </style>

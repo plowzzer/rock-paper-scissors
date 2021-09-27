@@ -52,6 +52,16 @@
       background-image: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
     }
 
+    &.lizard{
+      box-shadow: inset 0px -8px 1px hsla(0,0%,0%,25%);
+      background-image: linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+    }
+
+    &.spock{
+      box-shadow: inset 0px -8px 1px hsla(0,0%,0%,25%);
+      background-image: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+    }
+
     button {
       height: 90px;
       width: 90px;
