@@ -40,6 +40,7 @@
   function getHumanizeResult (gameResult)  {
     if (gameResult === 'win') return 'YOU WIN'
     if (gameResult === 'lose') return 'YOU LOSE'
+    return 'DRAW'
   }
 
   function resetGame() {
