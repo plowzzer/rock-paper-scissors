@@ -1,8 +1,8 @@
 <script>
+  import '../styles/global.scss'
   import { Modals, closeModal, openModal } from 'svelte-modals'
   import { fade } from 'svelte/transition'
 
-  import Base from '../components/_Base.svelte'
   import { normalGame } from '../helpers/gameEngine.svelte';
   import Icon from '../components/Icon.svelte'
   import Intro from '../components/Intro.svelte'
@@ -60,8 +60,6 @@
 <svelte:head>
 	<title>Rock Paper Scissors</title>
 </svelte:head>
-
-<Base/>
 
 <div class="game">
   <div class="container">
